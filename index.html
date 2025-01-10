@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kalorien-Tracker mit Suchfunktion</title>
+  <title>Kalorien-Tracker mit Kamera</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -63,14 +63,9 @@
   </style>
 </head>
 <body>
-  <h1>Kalorien-Tracker mit Suchfunktion</h1>
-  <div id="search-container">
-    <input type="text" id="search-input" placeholder="Produkt suchen..." />
-    <button id="search-btn">Suchen</button>
-  </div>
+  <h1>Kalorien-Tracker mit Kamera</h1>
   <video id="video" autoplay></video>
-  <div id="output">Scan a barcode to add the product</div>
-
+  <div id="output">Scannen Sie einen Barcode mit der Kamera</div>
   <h3>Produktliste</h3>
   <table id="product-table">
     <thead>
@@ -86,7 +81,6 @@
       <!-- Dynamisch eingefügte Produkte -->
     </tbody>
   </table>
-
   <div id="totals">
     <h3>Gesamtwerte:</h3>
     <p>Kcal: <span id="total-kcal">0</span></p>
@@ -94,9 +88,7 @@
     <p>Eiweiß: <span id="total-protein">0</span> g</p>
     <p>Fett: <span id="total-fat">0</span> g</p>
   </div>
-
   <button id="reset-btn">Zurücksetzen</button>
-
   <script src="tracker.js"></script>
 </body>
 </html>
