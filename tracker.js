@@ -7,6 +7,9 @@ const totalKcal = document.getElementById('total-kcal');
 const totalCarbs = document.getElementById('total-carbs');
 const totalProtein = document.getElementById('total-protein');
 const totalFat = document.getElementById('total-fat');
+const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-btn');
+const searchTable = document.getElementById('search-table');
 const resetBtn = document.getElementById('reset-btn');
 
 let totalCalories = 0;
@@ -22,7 +25,12 @@ const codeReader = new BrowserMultiFormatReader();
 
 // Kamera aktivieren und Barcode scannen
 codeReader.getVideoInputDevices().then(videoInputDevices => {
-  const firstDeviceId = videoInputDevices[0]?.deviceId;
+  if (videoInputDevices.length === 0) {
+    output.textContent = 'Keine Kamera gefunden. Bitte Kamera prüfen.';
+    return;
+  }
+
+  const firstDeviceId = videoInputDevices[0].deviceId;
 
   // Startet das Scannen
   codeReader.decodeFromVideoDevice(firstDeviceId, 'video', result => {
@@ -38,7 +46,6 @@ codeReader.getVideoInputDevices().then(videoInputDevices => {
             const product = data.product;
             const nutrients = product.nutriments;
 
-            // Produktinformationen extrahieren
             const productName = product.product_name || 'Unbekannt';
             const kcal = nutrients?.energy_kcal || 0;
             const carbs = nutrients?.carbohydrates || 0;
@@ -65,6 +72,7 @@ codeReader.getVideoInputDevices().then(videoInputDevices => {
   });
 }).catch(err => {
   console.error('Fehler bei der Videoeingabe:', err);
+  output.textContent = 'Fehler beim Zugriff auf die Kamera. Bitte Berechtigungen prüfen.';
 });
 
 // Produkt zur Tabelle hinzufügen
@@ -107,4 +115,26 @@ resetBtn.addEventListener('click', () => {
   totalFat.textContent = '0';
 
   products.length = 0;
+});
+
+// Suchfunktion
+searchBtn.addEventListener('click', () => {
+  const searchQuery = searchInput.value.toLowerCase();
+  searchTable.innerHTML = '';
+
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(searchQuery)
+  );
+
+  filteredProducts.forEach(product => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${product.name}</td>
+      <td>${product.kcal}</td>
+      <td>${product.carbs}</td>
+      <td>${product.protein}</td>
+      <td>${product.fat}</td>
+    `;
+    searchTable.appendChild(row);
+  });
 });

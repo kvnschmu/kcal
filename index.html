@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kalorien-Tracker mit Kamera</title>
+  <title>Kalorien-Tracker mit Kamera und Suchfunktion</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -30,17 +30,17 @@
       padding: 10px;
       text-align: center;
     }
-    #reset-btn {
+    #reset-btn, #search-btn {
       margin-top: 20px;
       padding: 10px 20px;
-      background: #f44336;
+      background: #2196f3;
       color: #fff;
       border: none;
       cursor: pointer;
       border-radius: 5px;
     }
-    #reset-btn:hover {
-      background: #d32f2f;
+    #reset-btn:hover, #search-btn:hover {
+      background: #1976d2;
     }
     #search-container {
       margin: 20px;
@@ -49,23 +49,16 @@
       padding: 10px;
       width: 200px;
     }
-    #search-btn {
-      padding: 10px 20px;
-      background: #2196f3;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    #search-btn:hover {
-      background: #1976d2;
+    #search-results {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>Kalorien-Tracker mit Kamera</h1>
-  <video id="video" autoplay></video>
+  <h1>Kalorien-Tracker mit Kamera und Suchfunktion</h1>
+  <video id="video" autoplay playsinline></video>
   <div id="output">Scannen Sie einen Barcode mit der Kamera</div>
+
   <h3>Produktliste</h3>
   <table id="product-table">
     <thead>
@@ -81,6 +74,7 @@
       <!-- Dynamisch eingefügte Produkte -->
     </tbody>
   </table>
+
   <div id="totals">
     <h3>Gesamtwerte:</h3>
     <p>Kcal: <span id="total-kcal">0</span></p>
@@ -88,7 +82,31 @@
     <p>Eiweiß: <span id="total-protein">0</span> g</p>
     <p>Fett: <span id="total-fat">0</span> g</p>
   </div>
+
+  <div id="search-container">
+    <input type="text" id="search-input" placeholder="Produkt suchen...">
+    <button id="search-btn">Suchen</button>
+  </div>
+  <div id="search-results">
+    <h3>Suchergebnisse</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Produkt</th>
+          <th>Kcal</th>
+          <th>Kohlenhydrate</th>
+          <th>Eiweiß</th>
+          <th>Fett</th>
+        </tr>
+      </thead>
+      <tbody id="search-table">
+        <!-- Suchergebnisse -->
+      </tbody>
+    </table>
+  </div>
+
   <button id="reset-btn">Zurücksetzen</button>
+
   <script src="tracker.js"></script>
 </body>
 </html>
