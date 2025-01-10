@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalorien-Tracker mit Suchfunktion</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    #video {
+      width: 100%;
+      height: auto;
+    }
+    #output, #totals {
+      margin: 20px;
+    }
+    table {
+      margin: 0 auto;
+      width: 90%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    #reset-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #f44336;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    #reset-btn:hover {
+      background: #d32f2f;
+    }
+    #search-container {
+      margin: 20px;
+    }
+    #search-input {
+      padding: 10px;
+      width: 200px;
+    }
+    #search-btn {
+      padding: 10px 20px;
+      background: #2196f3;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    #search-btn:hover {
+      background: #1976d2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kalorien-Tracker mit Suchfunktion</h1>
+  <div id="search-container">
+    <input type="text" id="search-input" placeholder="Produkt suchen..." />
+    <button id="search-btn">Suchen</button>
+  </div>
+  <video id="video" autoplay></video>
+  <div id="output">Scan a barcode to add the product</div>
+
+  <h3>Produktliste</h3>
+  <table id="product-table">
+    <thead>
+      <tr>
+        <th>Produkt</th>
+        <th>Kcal</th>
+        <th>Kohlenhydrate</th>
+        <th>Eiweiß</th>
+        <th>Fett</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dynamisch eingefügte Produkte -->
+    </tbody>
+  </table>
+
+  <div id="totals">
+    <h3>Gesamtwerte:</h3>
+    <p>Kcal: <span id="total-kcal">0</span></p>
+    <p>Kohlenhydrate: <span id="total-carbs">0</span> g</p>
+    <p>Eiweiß: <span id="total-protein">0</span> g</p>
+    <p>Fett: <span id="total-fat">0</span> g</p>
+  </div>
+
+  <button id="reset-btn">Zurücksetzen</button>
+
+  <script src="tracker.js"></script>
+</body>
+</html>
